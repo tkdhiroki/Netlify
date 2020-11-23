@@ -7,6 +7,7 @@
     <p>ここに文章</p>
 </div>
 */
+
 .box26 {
     position: relative;
     margin: 2em 0;
@@ -161,6 +162,7 @@
   
   h1 {
     position: relative;
+    text-align: center;    
     padding: 0.1em 0.5em;
     background: -webkit-linear-gradient(
       to right,
@@ -204,6 +206,9 @@ h4 {
   ol li {
     line-height: 1.5;
     padding: 0.5em 0;
+  }
+  p{
+    margin-left: 40px;
   }
   
 #body {
@@ -258,8 +263,8 @@ h4 {
 
   
 div.rollbox {
-  width: 60%;
-  height: 200px;
+  width: 80%;
+  height: 600px;
   background-color: black;
   overflow: scroll;
   margin-left: 20px;
@@ -280,8 +285,8 @@ div.rollbox {
 }
 
 .box7{
+  margin-left: 40px;
   padding: 0.5em 1em;
-  margin: 2em 0;
   color: #474747;
   background: whitesmoke;/*背景色*/
   border-left: double 7px #4ec4d3;/*左線*/
@@ -289,12 +294,14 @@ div.rollbox {
 }
 .box7 p {
   margin: 0; 
+  margin-left: 20px;
   padding: 0;
 }
 
 footer{
   position: absolute;
     bottom: 0;
+    right: 10px;
     font-size: 28px;
     font-weight: bold;
 }
@@ -343,7 +350,7 @@ table.brwsr2 {
   color: #666;
   font-size: 16px;
   line-height: 16px;
-  text-indent: 50px;
+  text-indent: 48px;
   text-align: left;
   vertical-align: middle;
   white-space: nowrap;
