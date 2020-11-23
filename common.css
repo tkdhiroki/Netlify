@@ -1,0 +1,369 @@
+/* https://saruwakakun.com/html-css/reference/box を参照 */
+
+/*
+ボックスタイトル
+<div class="box26">
+    <span class="box-title">ここにタイトル</span>
+    <p>ここに文章</p>
+</div>
+*/
+.box26 {
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border: solid 3px #95ccff;
+    border-radius: 8px;
+  }
+  .box26 .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 19px;
+    background: #fff;
+    color: #95ccff;
+    font-weight: bold;
+  }
+  .box26 p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /*
+   見出し風 
+  <div class="box22">
+      <p>ここに文章</p>
+  </div> 
+  */
+  
+  .box22 {
+    padding: 0.5em 1em;
+    margin: 1em 0;
+    background: #f4f4f4;
+    border-left: solid 6px #5bb7ae;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.33);
+  }
+  .box22 p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /*
+   上下に線 
+   <div class="box4">
+      <p>ここに文章</p>
+   </div>
+  */
+  
+  .box4 {
+    padding: 8px 19px;
+    margin: 2em 0;
+    color: #2c2c2f;
+    background: #cde4ff;
+    border-top: solid 5px #5989cf;
+    border-bottom: solid 5px #5989cf;
+  }
+  .box4 p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /*
+  エンボスボタン
+  <a href="#" class="btn-square-emboss">BUTTON</a>
+  */
+  
+  .btn-square-emboss {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #668ad8; /*ボタン色*/
+    color: #4868ad; /*ボタン色より暗く*/
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px #627295;
+    border-radius: 3px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  }
+  
+  .btn-square-emboss:active {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+  }
+  
+  /* 
+  文字立体ボタン
+  <a href="#" class="btn-text-3d">BUTTON</a>
+  */
+  
+  .btn-text-3d {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 37px;
+    color: #799dec;
+    text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.32), 0px 1px 0px #6182ca,
+      0px 2px 0px #4f6aa7, 0px 3px 0px #5470ad;
+  }
+  .btn-text-3d:active {
+    top: 4px;
+    text-shadow: none;
+  }
+  
+  /* 
+  凹みアイコンボタン
+  <a href="#" class="btn-real-dent">
+    <i class="fa fa-home"></i>
+  </a>
+  */
+  
+  .btn-real-dent {
+    /*周りの凹み*/
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: rgba(3, 169, 244, 0.54);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    background: #f7f7f7;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+  }
+  .btn-real-dent i {
+    /*ボタン自体*/
+    position: absolute;
+    content: "";
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    left: 10px;
+    top: 9px;
+    border-radius: 50%;
+    font-size: 40px;
+    background-image: linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5),
+      0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #b5b5b5;
+  }
+  
+  .btn-real-dent .fa:active {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      0 2px 2px rgba(0, 0, 0, 0.19);
+    border-bottom: solid 2px #d8d8d8;
+  }
+  
+  /* グラデーションの見出し */
+  
+  h1 {
+    position: relative;
+    padding: 0.1em 0.5em;
+    background: -webkit-linear-gradient(
+      to right,
+      rgb(255, 186, 115),
+      transparent
+    );
+    background: linear-gradient(to right, rgb(255, 186, 115), transparent);
+    color: #545454;
+  }
+  
+  /* 見出し */
+  h3 {
+    padding: 0.4em 0.5em; /*文字の上下 左右の余白*/
+    color: #494949; /*文字色*/
+    background: #f4f4f4; /*背景色*/
+    border-left: solid 5px #7db4e6; /*左線*/
+    border-bottom: solid 3px #d7d7d7; /*下線*/
+    margin-left: 20px;
+  }
+/* 見出し */
+h4 {
+    padding: 0.4em 0.5em; /*文字の上下 左右の余白*/
+    color: #494949; /*文字色*/
+    background: #f4f4f4; /*背景色*/
+    border-left: solid 5px #fc2727; /*左線*/
+    border-bottom: solid 3px #494949; /*下線*/
+    width: 80%;
+    margin-left: 30px;
+    }
+  /* 上下のみボーダーのリスト */
+  
+  ul,
+  ol {
+    color: #1e366a;
+    border-top: solid #1e366a 1px; /*上のボーダー*/
+    border-bottom: solid #1e366a 1px; /*下のボーダー*/
+    padding: 0.5em 0 0.5em 1.5em;
+  }
+  
+  ul li,
+  ol li {
+    line-height: 1.5;
+    padding: 0.5em 0;
+  }
+  
+#body {
+    overflow: scroll;
+    width: 80%;
+}
+
+/* table{
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: 40px;
+  }
+  
+  table tr{
+    border-bottom: solid 3px black;
+  }
+  
+  table tr:last-child{
+    border-bottom: none;
+  }
+  
+  table th{
+    position: relative;
+    text-align: left;
+    width: 20%;
+    background-color: #52c2d0;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  table th:after{
+    display: block;
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    top:calc(50% - 10px);
+    right:-10px;
+    border-left: 10px solid #52c2d0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+  
+  table td{
+    text-align: left;
+    width: 70%;
+    text-align: center;
+    background-color: #eee;
+    padding: 10px 0;
+  } */
+
+  
+div.rollbox {
+  width: 60%;
+  height: 200px;
+  background-color: black;
+  overflow: scroll;
+  margin-left: 20px;
+  color: white;
+}
+
+.box11{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #5d627b;
+  background: white;
+  border-top: solid 5px #5d627b;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+.box11 p {
+  margin: 0; 
+  padding: 0;
+}
+
+.box7{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #474747;
+  background: whitesmoke;/*背景色*/
+  border-left: double 7px #4ec4d3;/*左線*/
+  border-right: double 7px #4ec4d3;/*右線*/
+}
+.box7 p {
+  margin: 0; 
+  padding: 0;
+}
+
+footer{
+  position: absolute;
+    bottom: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+table.brwsr2 {
+  margin: 0 auto;
+  width: 80%;
+  border: none;
+  border-top: solid 1px #666;
+  border-bottom: solid 1px #666;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  background: #f5f5f5;
+  }
+  
+  table.brwsr2 th {
+  vertical-align: middle;
+  height: 53px;
+  width: 20%;
+  border-right: solid 1px #666;
+  margin: 0;
+  text-align: center;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  }
+  
+  table.brwsr2 th.only {
+    vertical-align: middle;
+    height: 53px;
+    width: 20%;
+    border-right: solid 1px #666;
+    border-left: solid 1px #666;
+    margin: 0;
+    text-align: center;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  table.brwsr2 td.data {
+  padding: 0;
+  margin: 0;
+  height: 53px;
+  width: 60%;
+  border: none;
+  color: #666;
+  font-size: 16px;
+  line-height: 16px;
+  text-indent: 50px;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  }
+  
+  table.brwsr2 td:fst-child {
+  padding: 0 0 0 10px;
+  vertical-align: middle;
+  }
+  
+  table.brwsr2 td.bar {
+  height: 1px;
+  width: 80%;
+  border-top: solid 1px #34495e;
+  }
+
+  .wrapper{
+    min-height:  100vh;
+    position: relative;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+  }
