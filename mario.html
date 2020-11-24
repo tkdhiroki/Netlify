@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>T・H Portfolio</title>
     <link rel="stylesheet" type="text/css" href="./common.css" />
     <!--<link rel="stylesheet" type="text/css" href="./design.css" />-->
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?&skin=sons-of-obsidian&lang-cs"></script>
@@ -14,363 +14,282 @@
 <body>
     
     <div class="wrapper">
-    <h1>バルーンシューティング</h1>
-    <h3>成果物</h3>
-    <table class="brwsr2">
-        <tbody>
-        <tr>
-            <th>タイトル</th>
-            <td class="data fst">バルーンシューティング（個人製作）</td>
-        </tr>
-        <tr> <td class="bar" colspan="6"></td> </tr>
-        <tr>
-            <th>ゲーム概要</th>
-            <td class="data fst">飛んでくる風船を打つゲームを２Ｄで作成。ICADEを使ってアクション感をだした</td>
-        </tr>
-        <tr> <td class="bar" colspan="6"></td> </tr>
-        <tr>
-            <th>制作期間</th>
-            <td class="data fst">2019/06/03 ~ 2019/06/04 ６時間程度</td>
-        </tr>
-        <tr> <td class="bar" colspan="6"></td> </tr>
-        <tr>
-            <th>使用言語・ソフト</th>
-            <td class="data fst">Unity C# を使用し、を使い Unity で Ipad にビルド。</td>
-        </tr>
-        </tbody>
-    </table>
-    <h3>ソースコード</h3>
-
-    <div onclick="obj=document.getElementById('menu1').style; obj.display=(obj.display=='none')?'block':'none';">
-        <a style="cursor:pointer;">▼ BallonGenelate.csソースコード</a>
-    </div>
-
-    <div id="menu1" style="display:none;clear:both;">
-            <div class="box11">
-                    <p>風船をランダムに生成。生成位置は被りがないように一つ前の</p>
-                    <p>生成位置は被りがないように一つ前のランダム値を取得し、ランダムを再び生成しているがそこで近しい値がでても気にしないようにした。</p>
-                </div>
-        <div class="rollbox">
-        <pre><code class="prettyprint lang">
-        using System.Collections;
-        using System.Collections.Generic;
-        using UnityEngine;
-
-        public class BallonGenelate : MonoBehaviour
-        {
-            [SerializeField]
-            GameObject ballonPrefab;
-            GameObject parent;
-
-            [SerializeField]
-            private float randomMin;
-            [SerializeField]
-            private float randomMax;
-
-            private float pastRandom = 0;
-            [SerializeField]
-            private float randFloat = 1f;
-            [SerializeField]
-            private float genelatePosY;
-
-            float time = 0;
-
-            private float genelateSpeed = 0.7f;
-
-            [SerializeField]
-            PlayerShoot ps;
-
-            // Start is called before the first frame update
-            void Start()
-            {
-                pastRandom = 0;
-            }
-
-            // Update is called once per frame
-            void Update()
-            {
-                if (ps.GameFlag) return;
-
-                time += Time.deltaTime;
-                if (genelateSpeed > time) return;
-
-                InitBallon();
-                time = 0;
-                
-            }
-            /// <summary>
-            /// バルーン生成
-            /// </summary>
-            private void InitBallon()
-            {
-                float randX = UnityEngine.Random.Range(randomMin, randomMax);
-                // 生成位置の被り防止
-                if (pastRandom != 0)
-                {
-                    if (randX >= pastRandom - randFloat && pastRandom + randFloat >= randX)
-                    {
-                        randX = UnityEngine.Random.Range(randomMin, randomMax);
-                    }
-                }
-
-                Vector3 genePoint = new Vector3(randX, genelatePosY, 0);
-
-                GameObject ballon = Instantiate(ballonPrefab, genePoint, Quaternion.identity);
-
-                ballon.AddComponent<BaloonMoving>();
-
-                pastRandom = randX;
-            }
-        }
-                </code>
-            </pre>
+        <h1>MVCモデル構築</h1>
+        <h3>成果物</h3>
+        <table class="brwsr2">
+            <tbody>
+            <tr>
+                <th>タイトル</th>
+                <td class="data fst">MVCモデル構築</td>
+            </tr>
+            <tr> <td class="bar" colspan="6"></td> </tr>
+            <tr>
+                <th>苦労した点</th>
+                <td class="data fst">Utilityクラスの処理・オブジェクトが複数に増えた際のアップデートの管理</td>
+            </tr>
+            <tr> <td class="bar" colspan="6"></td> </tr>
+            <tr>
+                <th>使用言語・ソフト</th>
+                <td class="data fst">C++ / Dxlibrary / Visual Studio 2017</td>
+            </tr>
+            </tbody>
+        </table>
+        <h3>成果物概要</h3>
+        <div class="box7">
+            <p>C++でのMVCモデル構築</p>
         </div>
-    </div>
-
-
-    <div onclick="obj=document.getElementById('menu2').style; obj.display=(obj.display=='none')?'block':'none';">
-        <a style="cursor:pointer;">▼ PlayerShoot.csソースコード</a>
-    </div>
-    <div id="menu2" style="display:none;clear:both;">
-            <div class="box11">
-                    <p>playerの照準をアナログスティックで動かす。画面外に照準がいかないように制限</p>
-                    <p>Colliderで風船と照準の重なりを取得してボタンで風船を破壊</p>
-                    <p>風船の画像を破裂した風船に変えている。当たり判定を少しの間残して連打でスコアが伸びるように</p>
-                </div>
-            <div class="rollbox">
-
-        <pre><code class="prettyprint">
-        using System.Collections;
-        using System.Collections.Generic;
-        using UnityEngine;
-        
-        public class PlayerShoot : MonoBehaviour
-        {
-            SpriteRenderer spriteRenderer;
-            [SerializeField]
-            Sprite balon;
-            [SerializeField]
-            ScoreManager scmane;
-        
-            bool gameflag = false;
-            public bool GameFlag { get { return gameflag; } set { gameflag = value; } }
-        
-            private int score;
-            float mspeed = 0.2f;
-        
-            public int minX = -3;
-            public int maxX = 3;
-            public int minY = -4;
-            public int maxY = 3;
-        
-            float x = 0;
-            float y = 0;
-        
-            private void Update()
-            {
-                if (gameflag) return;
-                PMove();
-            }
-        
-            private void PMove()
-            {
-                if (Input.GetKey(KeyCode.W)) { y = 1; }
-                else if (Input.GetKey(KeyCode.E)) { y = 0; }
-        
-                if (Input.GetKey(KeyCode.X)) { y = -1; }
-                else if (Input.GetKey(KeyCode.Z)) { y = 0; }
-        
-                if (Input.GetKey(KeyCode.D)) { x = 1; }
-                else if (Input.GetKey(KeyCode.C)) { x = 0; }
-        
-                if (Input.GetKey(KeyCode.A)) { x = -1; }
-                else if (Input.GetKey(KeyCode.Q)) { x = 0; }
-        
-                transform.position += new Vector3(x * mspeed, y * mspeed, 0);
-                // positionを制限
-                transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), Mathf.Clamp(transform.position.y, minY, maxY), 0);
-            }
-        
-            private void OnTriggerStay2D(Collider2D collision)
-            {
-                if (Input.GetKeyDown(KeyCode.O))
-                {
-                    StartCoroutine(TimeSpan(collision.gameObject));
-                    scmane.AddScore(collision.gameObject.GetComponent<BaloonMoving>().Score);
-                }
-            }
-            /// <summary>
-            /// spriteを変える
-            /// 当たり判定を残して破裂した風船にもスコアを与える
-            /// </summary>
-            IEnumerator TimeSpan(GameObject col)
-            {
-        
-                GameObject balonChild = col.transform.GetChild(0).gameObject;
-                spriteRenderer = balonChild.GetComponent<SpriteRenderer>();
-                spriteRenderer.sprite = balon;
-                yield return new WaitForSeconds(0.5f);
-        
-                Destroy(col.gameObject);
-            }
-        }
+        <p>
+            <img src="./mvc.jpg" width="809" height="455"><br>
+        </p>
+        <h3>ソースコード</h3>
+    
+        <div onclick="obj=document.getElementById('menu1').style; obj.display=(obj.display=='none')?'block':'none';">
+            <a style="cursor:pointer;">▼ CharaView.cppソースコード</a>
+        </div>
+        <div id="menu1" style="display:none;clear:both;">
+                <div class="box11">
+                        <p>Viewのアップデートが呼ばれると画面の真ん中に点を打つ処理</p>
+                    </div>
+                <div class="rollbox">
+            <pre><code class="prettyprint">
+            #include "DxLib.h"
+            #include "CharaView.h"
             
-    </code>
-    </pre>
-    </div>
-    </div>
+            
+            namespace Charactor
+            {
+                CharaView* CharaView::s_pCharaView = nullptr;
+            
+                //	コンストラクタ
+                CharaView::CharaView()
+                {
+                }
+            
+                //	デストラクタ
+                CharaView::~CharaView()
+                {
+                }
+            
+                //	描画アップデート
+                void CharaView::Update()
+                {
+                    DrawPixel(320, 240, GetColor(255, 255, 255));	// 点を打つ
+                }
+            }
+        </code>
+        </pre>
+        </div>
+        </div>
+    
+        <div onclick="obj=document.getElementById('menu2').style; obj.display=(obj.display=='none')?'block':'none';">
+            <a style="cursor:pointer;">▼ Charactor.cppソースコード</a>
+        </div>
+        <div id="menu2" style="display:none;clear:both;">
+                <div class="box11">
+                        <p>キャラクターのコントロール・モデル・ビューを管理するクラス</p>
+                    </div>
+                <div class="rollbox">
+            <pre><code class="prettyprint">
+            #include "Charactor.h"
+            #include #include &lt;string&gt;
+            #include "CharaControl.h"
+            #include "CharaModel.h"
+            #include "CharaView.h"
+            #include "Utility.h"
+            
+            using namespace std;
+            
+            namespace Charactor
+            {
+                //	アップデート登録用の名前
+                string cName = "chara_class";
+                ///	
+                ///	キャラクター初期化
+                ///	
+                void initCharactor()
+                {
+                    //	モデルの初期化
+                    CharaModel::s_pCharaModel = new CharaModel();
+                    //	コントロールの初期化
+                    CharaControl::s_pCharaControl = new CharaControl();
+                    //	ビューの初期化
+                    CharaView::s_pCharaView = new CharaView();
+                    //	キャラクターのアップデート処理登録
+                    Utility::GetInstance()->AddUpdate(cName, Charactor::ControlUpdate, Charactor::ViewUpdate);
+                }
+            
+                ///	
+                ///	キャラクター削除
+                ///	
+                void removeCharactor()
+                {
+                    //	キャラクターのアップデート処理解除
+                    Utility::GetInstance()->RemoveUpdate(cName);
+                    //	ビューの破棄
+                    DELETE_U(Charactor::CharaView::s_pCharaView);
+                    //	コントロールの破棄
+                    DELETE_U(Charactor::CharaControl::s_pCharaControl);
+                    //	モデルの破棄
+                    DELETE_U(Charactor::CharaModel::s_pCharaModel);
+                }
+            
+                ///	
+                ///	コントロールのアップデート
+                ///	
+                void ControlUpdate()
+                {
+                    //	キャラクターコントロールのアップデート
+                    CharaControl::s_pCharaControl->Update();
+                }
+            
+                ///	
+                ///	ビューのアップデート
+                ///	
+                void ViewUpdate()
+                {
+                    //	キャラクタービューのアップデート
+                    CharaView::s_pCharaView->Update();
+                }
+            }
+        </code>
+        </pre>
+        </div>
+        </div>
 
-    <div onclick="obj=document.getElementById('menu3').style; obj.display=(obj.display=='none')?'block':'none';">
-        <a style="cursor:pointer;">▼ Ranking.csソースコード</a>
-    </div>
-    <div id="menu3" style="display:none;clear:both;">
-            <div class="box11">
-                    <p>ゲームにのめり込んでほしくてランキングを作成</p>
-                </div>
-            <div class="rollbox">
-                    <pre><code class="prettyprint">
-        using UnityEngine;
-        using UnityEngine.UI;
-        
-        public class Ranking : MonoBehaviour
-        {
-            string[] ranking = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
-            int[] rankingValue = { 0, 100, 500, 1000, 2000 };
-        
-            [SerializeField, Header("表示させるテキスト")]
-            Text[] rankingText = new Text[5];
-            [SerializeField]
-            ScoreManager sm;
-        
-            public static int score;
-        
-            // Use this for initialization
-            void Start()
-            {
-                GetRanking();
-                SetRanking(score);
-                for (int i = 0; i < rankingText.Length; i++)
+        <div onclick="obj=document.getElementById('menu3').style; obj.display=(obj.display=='none')?'block':'none';">
+            <a style="cursor:pointer;">▼ Utility.cppソースコード</a>
+        </div>
+        <div id="menu3" style="display:none;clear:both;">
+                <div class="box11">
+                        <p>メインループで全体のアップデート処理を管理するクラス</p>
+                        <p>テーブルに格納された関数オブジェクトを呼び出す</p>
+                    </div>
+                <div class="rollbox">
+            <pre><code class="prettyprint">
+            #include "Utility.h"
+            /*
+                #pragma once
+
+                #include &lt;map&gt;
+                #include &lt;string&gt;
+                
+                using namespace std;
+                
+                #include <functional>
+                
+                ///	マクロ
+                #define DELETE_U(p)	if(p) {delete (p); (p) = nullptr;}
+                #define func std::function<void()>
+                
+                class Utility
                 {
-                    rankingText[i].text = rankingValue[i].ToString();
-                }
-            }
-        
-            /// <summary>
-            /// ランキング呼び出し
-            /// </summary>
-            void GetRanking()
-            {
-                //ランキング呼び出し
-                for (int i = 0; i < ranking.Length; i++)
-                {
-                    rankingValue[i] = PlayerPrefs.GetInt(ranking[i]);
-                }
-            }
-            /// <summary>
-            /// ランキング書き込み
-            /// </summary>
-            public void SetRanking(int _value)
-            {
-                //書き込み用
-                for (int i = ranking.Length-1; i > 0; i--)
-                {
-                    //取得した値とRankingの値を比較して入れ替え
-                    if (_value > rankingValue[i])
+                public:
+                    //	アップデートテーブル用の構造体
+                    struct UtilityUpdateParam
                     {
-                        var change = rankingValue[i];
-                        rankingValue[i] = _value;
-                        _value = change;
+                        func controlUpdate;		//	コントロールアップデート関数
+                        func viewUpdate;		//	ビューアップデート関数
+                        //	構造体のコンストラクタ
+                        UtilityUpdateParam(func cUpdate, func vUpdate)
+                        {
+                            controlUpdate = cUpdate;
+                            viewUpdate = vUpdate;
+                        }
+                    };
+                
+                private:
+                    static Utility* m_instance;
+                
+                public:
+                    ///	実体の取得（シングルトン）
+                    static Utility* GetInstance() 
+                    {
+                        //	もしも実体が生成されていなければ新規作成
+                        if (m_instance == nullptr) m_instance = new Utility();
+                        return m_instance;
                     }
-                }
-        
-                //入れ替えた値を保存
-                for (int i = 0; i < ranking.Length; i++)
-                {
-                    PlayerPrefs.SetInt(ranking[i], rankingValue[i]);
-                }
-                // スコア初期化
-                _value = 0;
-            }
-        }
-                        
-    </code>
-    </pre>
-    </div>
-    </div>
+                    Utility();
+                    ~Utility();
+                
+                    void ControlUpdate();
+                    void ViewUpdate();
+                
+                    void AddUpdate(string name, func controlFunction, func viewFunction);
+                    void RemoveUpdate(string name);
+                
+                public:
+                    //	アップデートテーブル
+                    map&lt;string, UtilityUpdateParam*&gt; m_updates;
+                };
+            */
 
-    <div onclick="obj=document.getElementById('menu4').style; obj.display=(obj.display=='none')?'block':'none';">
-        <a style="cursor:pointer;">▼ StageMove.csソースコード</a>
-    </div>
-    <div id="menu4" style="display:none;clear:both;">
-            <div class="box11">
-                    <p>風船が飛んでる感じを出すために背景を動かしました</p>
-                </div>
-            <div class="rollbox">
-        <pre><code class="prettyprint">
-        using System.Collections;
-        using System.Collections.Generic;
-        using UnityEngine;
-        
-        public class StageMove : MonoBehaviour
-        {
-            private bool isfinish = false;
-            public bool isFinish { set { isfinish = value; } }
-            [SerializeField]
-            GameObject upBackGround = null;
-        
-            private float speed = 0f;
-            private float downPosition = 0f;
-        
-            private float objPosY;
-        
-            private Vector3 upPosition;
-        
-            // Start is called before the first frame update
-            void Start()
-            {
-                speed = 0.1f;
-                upPosition = Vector3.zero;
-                objPosY = upBackGround.GetComponent<SpriteRenderer>().bounds.size.y;
-                downPosition = objPosY * 2f;
-            }
-        
-            void Update()
-            {
-                Move();
-            }
-            private void Move()
-            {
-                if (isfinish) return;
-                // 一定の座標より下に行ったら上に行く
-                if (transform.position.y <= -downPosition)
-                {
-                    upPosition = upBackGround.transform.position;
-                    upPosition += new Vector3(0, objPosY - speed, 0);
-                    transform.position = upPosition;
-                }
-                else
-                {
-                    transform.position -= new Vector3(0, speed, 0);
-                }
-            }
-        }
+            Utility* Utility::m_instance = nullptr;
             
-    </code>
-    </pre>
+            ///	
+            ///	コンストラクタ
+            ///	
+            Utility::Utility()
+            {
+            }
+            
+            ///	
+            ///	デストラクタ
+            ///	
+            Utility::~Utility()
+            {
+            }
+            
+            ///	
+            ///	コントロール全体のアップデート処理
+            ///	
+            void Utility::ControlUpdate()
+            {
+                //	登録済みのコントロールアップデートを呼び出す
+                for (auto up : m_updates)
+                {
+                    if (up.second->controlUpdate != nullptr)
+                        up.second->controlUpdate();
+                }
+            }
+            
+            ///	
+            ///	ビュー全体のアップデート処理
+            ///	
+            void Utility::ViewUpdate()
+            {
+                //	登録済みのビューアップデートを呼び出す
+                for (auto up : m_updates)
+                {
+                    if (up.second->viewUpdate != nullptr)
+                        up.second->viewUpdate();
+                }
+            }
+            
+            ///	
+            ///	アップデート登録関数
+            ///	
+            void Utility::AddUpdate(string name, func controlFunction, func viewFunction)
+            {
+                m_updates[name] = new Utility::UtilityUpdateParam(controlFunction, viewFunction);
+            }
+            
+            ///	
+            ///	登録関数の解除
+            ///	
+            void Utility::RemoveUpdate(string name)
+            {
+                delete(m_updates[name]);
+                m_updates.erase(name);
+            }               
+                
+        </code>
+        </pre>
+        </div>
+        </div>
+        <footer>
+            <p> <a href="index.html"> 戻る </a>  </p>
+        </footer>
     </div>
-    </div>
-
-
-    <h3>ゲーム概要</h3>
-    <div class="box7">
-        <p>Ipad 専用の筐体 ICADE を使用したゲーム制作</p>
-        <p>アナログスティックとボタンを使用して簡単に熱中できるゲームを制作。</p>
-    </div>
-
-    <footer>
-        <p> <a href="index.html"> 戻る </a>  </p>
-    </footer>
-</div>
-</body>
-
-</html>
+    </body>
+    
+    </html>
