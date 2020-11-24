@@ -31,7 +31,7 @@
         <tr>
             <th>解決策</th>
             <td class="data fst">マウスの座標とオフセットをカードの大きさで割り、<br>
-                &emsp;&emsp;&emsp;その値の配列にアクセスしカード情報が確認できれば取得している。</td>
+                &emsp;&emsp;&emsp;その値の配列にアクセスしカード情報が確認できれば取得している</td>
         </tr>
         <tr> <td class="bar" colspan="6"></td> </tr>
         <tr>
@@ -45,7 +45,8 @@
         <p>C++とDxlibraryを使用した神経衰弱ゲームの作成</p>
     </div>
     <p>
-        <img src="./trump.jpg" width="809" height="455"><br>
+        <!-- <img src="./trump.jpg" width="809" height="455"><br> -->
+        <video preload="none" width="800px" height="600px" src="trumpvideo.mp4" poster="trump.jpg"controls></video>
     </p>
     <h3>ソースコード</h3>
 
@@ -54,7 +55,7 @@
     </div>
     <div id="menu4" style="display:none;clear:both;">
             <div class="box11">
-                    <p>風船が飛んでる感じを出すために背景を動かしました</p>
+                    <p>Dxlibraryを使用した神経衰弱ゲーム</p>
                 </div>
             <div class="rollbox">
         <pre><code class="prettyprint">
@@ -88,7 +89,7 @@
             int ox, oy, nx, ny;
             int remains = 52;
             int turns = 0;
-            std::vector<Card> cards(52);
+            std::vector&lt;Card&gt; cards(52);
             bool mouse_flag = false;
         
             ChangeWindowMode(TRUE); // Window Mode
