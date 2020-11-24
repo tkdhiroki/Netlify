@@ -25,7 +25,15 @@
             <tr> <td class="bar" colspan="6"></td> </tr>
             <tr>
                 <th>苦労した点</th>
-                <td class="data fst">Utilityクラスの処理・オブジェクトが複数に増えた際のアップデートの管理</td>
+                <td class="data fst">Utilityクラスの処理・オブジェクトが複数に増えた際のアップデートの管理<br>
+                    &emsp;&emsp;&emsp;</td>
+            </tr>
+            <tr> <td class="bar" colspan="6"></td> </tr>
+            <tr>
+                <th>解決策</th>
+                <td class="data fst">Utilityクラスを作成して、クラス内でアップデート処理のテーブルの構造体を宣言して、<br>
+                    &emsp;&emsp;&emsp;MVCモデルのオブジェクトの関数オブジェクトを格納し、std::mapでキーと構造体を登録して<br>
+                    &emsp;&emsp;&emsp;アップデート処理を行う際にmapに登録されている関数を呼び出す。</td>
             </tr>
             <tr> <td class="bar" colspan="6"></td> </tr>
             <tr>
@@ -37,6 +45,9 @@
         <h3>成果物概要</h3>
         <div class="box7">
             <p>C++でのMVCモデル構築</p>
+            <p>自作ゲームを作成する際に、仕様変更が頻繁に起きてしまうため、コードを変更する際に修正する範囲が多かったためMVCモデルを学習</p>
+            <p>テストで作成したが、MVCモデルを実装したことにより、今後のプログラミングで可読性が高く、メンテナンスもしやすい設計をすることができた。</p>
+            <p><b>以下の画像</b>は、メインループでUtilityクラスのViewUpdate関数を呼び出した時に実行した、CharViewのアップデート処理</p>
         </div>
         <p>
             <img src="./mvc.jpg" width="809" height="455"><br>
